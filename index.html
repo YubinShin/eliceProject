@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello Bulma!</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Hello World</h1>
+        <p class="subtitle">My first website with <strong>Bulma</strong>!</p>
+        <div class="columns">
+          <div class="column">
+            <img id="car-image" src="/image/car_white.png" alt="" />
+          </div>
+          <form action="/cart" method="POST">
+            <div class="column car-info">
+              <div class="car-name">
+                <h2>모델명</h2>
+                <p id="car-name">멋진 승용차</p>
+                <input
+                  class="hide"
+                  type="text"
+                  name="model"
+                  value="멋진 승용차"
+                />
+              </div>
+              <div class="car-price">
+                <h2>가격</h2>
+                <p>₩ 10000</p>
+              </div>
+              <div class="car-option">
+                <h2>색상</h2>
+                <ul id="listChipColor" class="listChip clearfix"></ul>
+                <input
+                  type="text"
+                  id="car-color"
+                  class="car-color hide"
+                  name="color"
+                  value="white"
+                />
+                <h2>수량</h2>
+                <select name="quantity" id="quantity">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+            <div class="column">
+              <div class="buttons">
+                <button class="button is-success" id="submit">Success</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module">
+      import colorChip from "/data/colorchip.js";
+      const option = document.getElementById("listChipColor");
+      colorChip.forEach((color) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.setAttribute("href", "#");
+        const img = document.createElement("img");
+        img.width = "22";
+        img.height = "22";
+        img.alt = color.name;
+        img.src = color.link;
+        img.dataset.name = color.color;
+        li.appendChild(img);
+        li.appendChild(a);
+        option.appendChild(li);
+      });
+      const carName = document.getElementById("car-name");
+      const colorChipImg = option.getElementsByTagName("li");
+      const carImage = document.getElementById("car-image");
+      const carColor = document.getElementById("car-color");
+      const selectNum = document.getElementById("selectNum");
+      const submit = document.getElementById("car-color");
+      for (let i = 0; i < colorChipImg.length; i++) {
+        colorChipImg[i].addEventListener("click", function () {
+          colorChipImg[i].classList.add("active");
+          if (i === 0) {
+            carImage.setAttribute("src", `/image/car_white.png`);
+            carColor.value = "white";
+          } else if (i % 2 === 0) {
+            carImage.setAttribute("src", `/image/car_red.png`);
+            carColor.value = "red";
+          } else if (i % 2 === 1) {
+            carImage.setAttribute("src", `/image/car_yellow.png`);
+            carColor.value = "yellow";
+          } else if (i % 3 === 0) {
+            carImage.setAttribute("src", `/image/car_blue.png`);
+            carColor.value = "blue";
+          } else {
+            null;
+          }
+        });
+      }
+
+      submit.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        axios
+          .post("/cart", {})
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      });
+    </script>
+  </body>
+</html>
