@@ -1,2 +1,1 @@
-레퍼런스 :
-https://store-kr.uniqlo.com/display/showDisplayCache.lecs?goodsNo=NQ31145761&displayNo=NQ1A02A08E43&stonType=P&storeNo=83&siteNo=50706
+질문 : product.js 라우터에서 insertMany를 해도 디비에 아무것도 저장되지 않습니다
