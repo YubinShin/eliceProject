@@ -1,0 +1,18 @@
+[
+  {
+    "name": "벤츠123",
+    "image": "http://via.placeholder.com/640x360",
+    "price": 60000,
+    "maker": "미니어쳐벤츠",
+    "category": "벤츠",
+    "description": "예쁘다 나도 자동차 사고 싶다"
+  },
+  {
+    "name": "벤츠123",
+    "image": "http://via.placeholder.com/640x360",
+    "price": 60000,
+    "maker": "미니어쳐벤츠",
+    "category": "벤츠",
+    "description": "예쁘다 나도 자동차 사고 싶다"
+  }
+]
